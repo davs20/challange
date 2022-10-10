@@ -1,0 +1,30 @@
+
+services:
+  challenge-backend:
+    build:
+      context: .
+    restart: unless-stopped
+    expose:
+      - 3000:3000
+    tty: true
+    volumes:
+      - ./src/:/challenge
+    container_name: challenge-backend
+    networks:
+      - challenge-network
+
+  challenge-frontend:
+    container_name: challenge-frontend
+    image: node:lts
+    working_dir: /var/www/html/app/
+    entrypoint: /bin/bash
+    ports:
+      - 8000:8000
+      - 5173:5173
+    volumes:
+      - ./src/:/var/www/html/app
+    tty: true
+
+networks:
+  challenge-network:
+    driver: bridge
