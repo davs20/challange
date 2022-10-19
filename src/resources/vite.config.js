@@ -8,14 +8,14 @@ export default defineConfig({
     plugins: [vue()],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./js', import.meta.url))
+            '@': fileURLToPath(new URL('./ts', import.meta.url))
         }
     },
     build: {
         outDir: "../public/",
         manifest: true,
         rollupOptions: {
-            input: 'js/main.ts'
+            input: 'ts/main.ts'
         }
     },
 
